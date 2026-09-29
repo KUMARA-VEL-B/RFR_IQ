@@ -1,36 +1,68 @@
 # RFR-IQ
 
-Maritime decision support for bulk raw-material shipping to East Coast India.
+### Freight & Vessel Decision Support for Bulk Cargo Procurement
 
-## Main capabilities
-- **Freight Market** — historical freight index series with a separate, clearly labelled indicative market signal.
-- **Vessel Intelligence** — vessel class and capacity information for the planned shipment.
-- **Port Intelligence** — port capacity and readiness checks against shipment size.
-- **Risk Intelligence** — weather conditions for the route plus indicative freight volatility.
-- **Scenario Planning** — adjust delivery pressure, market direction and weather to see how the recommendation changes.
-- **Charter Decision** — a rule-based recommendation (ENTER, WAIT or WATCH) with supporting reasons.
+**RFR-IQ** is a maritime decision-support platform designed for bulk cargo procurement and vessel chartering to the East Coast of India.
 
-## Data behavior
-- Historical freight data comes from bundled datasets and is shown separately from the indicative signal.
-- The indicative freight signal is labelled as indicative. It is not a market price or broker quote.
-- Weather comes from Open-Meteo when route coordinates are available.
-- When information is missing, the app shows "Information unavailable" instead of estimating a value.
+It brings together freight-market context, vessel feasibility, port constraints, environmental conditions, risk signals, scenario analysis, and an explainable **ENTER / WAIT / WATCH** decision workflow in one interface.
 
-## Running locally
-```bash
-npm install
-npm run dev
+> **From reactive chartering to informed, proactive planning.**
+
+🌐 **Live Platform:** https://rfr-iq.vercel.app/#home
+
+---
+
+## Overview
+
+Bulk cargo procurement involves decisions across several interconnected factors:
+
+- Freight-market movements
+- Cargo quantity and shipment requirements
+- Vessel suitability
+- Port infrastructure and constraints
+- Weather and marine conditions
+- Market and operational risk
+- Charter timing
+- Scenario uncertainty
+
+These factors are often evaluated separately.
+
+**RFR-IQ brings them together into a single decision-support workflow.**
+
+The platform is designed around a simple question:
+
+> **When should we enter the market, and what operational conditions should influence that decision?**
+
+The system does not replace commercial or operational decision-makers. Instead, it makes the available evidence, constraints, assumptions, and decision reasoning visible in one place.
+
+---
+
+## Core Workflow
+
+```text
+Cargo & Shipment Requirements
+            │
+            ▼
+     Market Context
+            │
+            ▼
+   Vessel Feasibility
+            │
+            ▼
+    Port Constraints
+            │
+            ▼
+ Weather & Marine Conditions
+            │
+            ▼
+      Risk Assessment
+            │
+            ▼
+    Scenario Analysis
+            │
+            ▼
+    ENTER / WAIT / WATCH
+            │
+            ▼
+     Human Decision
 ```
-Other scripts: `npm run lint` (type check) and `npm run build` (single-file production build in `dist/`).
-
-## Environment
-Copy `.env.example` to `.env.local` and set:
-- `VITE_MOCK_FREIGHT_BASE_URL` — the base URL of the indicative freight signal service. Optional: when unset, freight signal cards show "unavailable" and everything else works.
-
-No secrets or credentials are required.
-
-## Important limitations
-- Historical freight data ends 2019-07-31.
-- The freight signal is indicative, not live market data.
-- There is no live vessel feed.
-- Some port and weather information may be unavailable (for example, ports without coordinates).
